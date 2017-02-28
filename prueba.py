@@ -1,9 +1,10 @@
 """Prueba de Estructuras."""
 # from Lista import Lista
-from Cola import Cola
-
+# from Cola import Cola
+# from Pila import Pila
 # list = Lista()
-cola = Cola()
+# cola = Cola()
+# pila = Pila()
 # list.agregar("a")
 # list.agregar("c")
 # list.agregar("d")
@@ -16,23 +17,29 @@ cola = Cola()
 # list.agregar("j")
 # list.agregar("k")
 # list.agregar("l")
-cola.push(10)
-cola.push(20)
-cola.push(30)
-cola.push(40)
-cola.push(50)
+# cola.push(10)
+# cola.push(20)
+# cola.push(30)
+# cola.push(40)
+# cola.push(50)
+# pila.push(10)
+# pila.push(20)
+# pila.push(30)
 # list.verLista()
-cola.verCola()
-print "*****************************"
+# cola.verCola()
+# pila.verPila()
+# print "*****************************"
 
-print "Se elimino: "+str(cola.pop())
+# print "Se elimino: "+str(cola.pop())
+# print "Se elimino: "+str(pila.pop())
+# cola.verCola()
+# pila.verPila()
+# print "*****************************"
 
-cola.verCola()
-print "*****************************"
-
-print "Se elimino: "+str(cola.pop())
-
-cola.verCola()
+# print "Se elimino: "+str(cola.pop())
+# print "Se elimino: "+str(pila.pop())
+# cola.verCola()
 # list.buscar("f")
-
+# pila.verPila()
+# print "*****************************"
 # print "La lista tiene longitud de : "+str(list.longitud())
