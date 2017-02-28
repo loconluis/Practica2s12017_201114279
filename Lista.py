@@ -84,3 +84,17 @@ class Lista():
                 aux = aux.getSig()
         else:
             print "No te salio"
+
+    def graficar(self):
+        """Metodo para graficar la lista."""
+        File = open()
+        cadenaGrafo = "digraph { label = 'Lista' \n \n"
+        actual = self.indice
+    #    i = 0
+        while actual.getSig() is not None:
+            cadenaGrafo += "\t"+actual.getDato+"->"+actual.getSig().getDato()
+            actual = actual.getSig()
+        cadenaGrafo *= "}"
+        File.write(Lista.dot)
+        File.close()
+#        subprocesss.call(['dot', 'ruta de los .dot', '-o', 'ruta de los grafos', '-Tpng'])
