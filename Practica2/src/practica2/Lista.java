@@ -5,15 +5,17 @@
  */
 package practica2;
 
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.RequestBody;
+
 /**
  *
  * @author luislocon
  */
 public class Lista extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Lista
-     */
+    Conexion cn = new Conexion(); 
+    
     public Lista() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -39,6 +41,11 @@ public class Lista extends javax.swing.JFrame {
         setTitle("Lista");
 
         bt_agregar.setText("Agregar");
+        bt_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_agregarActionPerformed(evt);
+            }
+        });
 
         bt_borrar.setText("Borrar");
 
@@ -88,6 +95,14 @@ public class Lista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_agregarActionPerformed
+        String data = txt_palabra.getText();
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("dato", data)
+                .build();
+        
+    }//GEN-LAST:event_bt_agregarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,11 +1,13 @@
 
  package practica2;
 
+ 
 /**
  *
  * @author luislocon
  */
 public class Practica2 {
+    
 
 
     public static void main(String[] args) {
@@ -14,5 +16,7 @@ public class Practica2 {
             new Home().setVisible(true);
         });
     }
+    
+    
     
 }

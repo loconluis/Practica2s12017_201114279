@@ -38,11 +38,11 @@ def serch():
 # Metodos para la Cola
 
 
-def pushC():
-    @app.route('/cola/agregar', methods=['POST'])
-    """Metodo para agregar a la cola."""
-    param = str(request.form['dato'])
-    cola.push(param)
+# def pushC():
+    # @app.route('/cola/agregar', methods=['POST'])
+    # """Metodo para agregar a la cola."""
+    # param = str(request.form['dato'])
+    # cola.push(param)
 
 
 @app.route('/cola/eliminar', methods=['GET'])
@@ -65,3 +65,6 @@ def popP():
     """Metodo para eliminar de la cola."""
     cola.pop()
 # Metodos para la Matriz
+
+
+app.run()

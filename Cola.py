@@ -1,4 +1,5 @@
 """Cola."""
+import subprocess
 
 
 class NodoC():
@@ -78,3 +79,18 @@ class Cola():
                 aux = aux.getSig()
         else:
             print "No te salio"
+
+    def graficar(self):
+        """Metodo para graficar la Cola."""
+        path = '/home/luislocon/Documentos/Cursos/EDD/Practica2EDD/Grafos/cola.dot'
+        fo = open(path, "w")
+        cadenaGrafo = "digraph { label = \"Cola\" \n \n"
+        actual = NodoC()
+        actual = self.cabeza
+        while actual.getSig() is not None:
+            cadenaGrafo += "\t"+str(actual.getDato())+"->"+str(actual.getSig().getDato())+"\n"
+            actual = actual.getSig()
+        cadenaGrafo += "}"
+        fo.write(cadenaGrafo)
+        fo.close()
+        subprocess.call(["dot", "-Tpng", "-O", path])

@@ -1,10 +1,10 @@
 """Prueba de Estructuras."""
 # from Lista import Lista
-# from Cola import Cola
-# from Pila import Pila
+from Cola import Cola
+from Pila import Pila
 # list = Lista()
-# cola = Cola()
-# pila = Pila()
+cola = Cola()
+pila = Pila()
 # list.agregar("a")
 # list.agregar("c")
 # list.agregar("d")
@@ -17,17 +17,20 @@
 # list.agregar("j")
 # list.agregar("k")
 # list.agregar("l")
-# cola.push(10)
-# cola.push(20)
-# cola.push(30)
-# cola.push(40)
+cola.push(10)
+cola.push(20)
+cola.push(30)
+cola.push(40)
 # cola.push(50)
-# pila.push(10)
-# pila.push(20)
-# pila.push(30)
+pila.push(10)
+pila.push(20)
+pila.push(30)
 # list.verLista()
-# cola.verCola()
-# pila.verPila()
+# list.graficar()
+pila.verPila()
+pila.graficar()
+cola.verCola()
+cola.graficar()
 # print "*****************************"
 
 # print "Se elimino: "+str(cola.pop())

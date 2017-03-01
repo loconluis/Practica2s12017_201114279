@@ -1,0 +1,6 @@
+digraph{ label = "Lista"
+
+	one -> two
+	two -> three;
+}
+

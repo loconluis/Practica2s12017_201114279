@@ -1,4 +1,5 @@
 """Pilas."""
+import subprocess
 
 
 class NodoP():
@@ -82,3 +83,18 @@ class Pila():
                     actual = actual.getSig()
             else:
                 print "No te salio"
+
+        def graficar(self):
+            """Metodo para graficar la Pila."""
+            path = '/home/luislocon/Documentos/Cursos/EDD/Practica2EDD/Grafos/pila.dot'
+            fo = open(path, "w")
+            cadenaGrafo = "digraph { label = \"Pila\" \n \n"
+            actual = NodoP()
+            actual = self.cabeza
+            while actual.getSig() is not None:
+                cadenaGrafo += "\t"+str(actual.getDato())+"->"+str(actual.getSig().getDato())+"\n"
+                actual = actual.getSig()
+            cadenaGrafo += "}"
+            fo.write(cadenaGrafo)
+            fo.close()
+            subprocess.call(["dot", "-Tpng", "-O", path])

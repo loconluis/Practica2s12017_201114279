@@ -1,4 +1,5 @@
 """Lista simple."""
+import subprocess
 
 
 class Nodo():
@@ -28,6 +29,8 @@ class Nodo():
 
 class Lista():
     """Clase Lista."""
+
+    import subprocess
 
     def __init__(self):
         """Constructor Lista."""
@@ -63,7 +66,8 @@ class Lista():
         i = 1
         while temp is not None:
             if temp.getDato() is dato:
-                print "Palabra: "+temp.getDato()+" en la posicion: "+str(i)
+                # print "Palabra: "+temp.getDato()+" en la posicion: "+str(i)
+                return temp.getDato()
                 break
             else:
                 temp = temp.getSig()
@@ -87,14 +91,16 @@ class Lista():
 
     def graficar(self):
         """Metodo para graficar la lista."""
-        File = open()
-        cadenaGrafo = "digraph { label = 'Lista' \n \n"
+        path = '/home/luislocon/Documentos/Cursos/EDD/Practica2EDD/Grafos/lista.dot'
+        fo = open(path, "w")
+        cadenaGrafo = "digraph { label = \"Lista\" \n \n"
+        actual = Nodo()
         actual = self.indice
     #    i = 0
         while actual.getSig() is not None:
-            cadenaGrafo += "\t"+actual.getDato+"->"+actual.getSig().getDato()
+            cadenaGrafo += "\t"+str(actual.getDato())+"->"+str(actual.getSig().getDato()+"\n")
             actual = actual.getSig()
-        cadenaGrafo *= "}"
-        File.write(Lista.dot)
-        File.close()
-#        subprocesss.call(['dot', 'ruta de los .dot', '-o', 'ruta de los grafos', '-Tpng'])
+        cadenaGrafo += "}"
+        fo.write(cadenaGrafo)
+        fo.close()
+        subprocess.call(["dot", "-Tpng", "-O", path])
