@@ -2,7 +2,7 @@
 
 __author__ = "loconluis"
 
-from flask import Flask, request, Response
+from flask import Flask, request
 from Lista import Lista
 from Cola import Cola
 from Pila import Pila
@@ -24,15 +24,18 @@ def hello():
 @app.route('/lista/agregar', methods=['POST'])
 def add():
     """Metodo de agregar por POST."""
-    param = str(request.form['dato'])
-    lista.agregar(param)
+    parametro = str(request.form['dato'])
+    lista.agregar(parametro)
+    lista.graficar()
+    return parametro
 
 
-@app.route('/lista/buscar', methods=['GET'])
+@app.route('/lista/buscar', methods=['POST'])
 def serch():
     """Metodo de buscar por POST."""
     param = str(request.form['dato'])
-    lista.buscar(param)
+#    lista.buscar(param)
+    return lista.buscar(param)
 
 
 # Metodos para la Cola
@@ -45,10 +48,11 @@ def serch():
     # cola.push(param)
 
 
-@app.route('/cola/eliminar', methods=['GET'])
+@app.route('/cola/eliminar', methods=['POST'])
 def popC():
     """Metodo para eliminar de la cola."""
     cola.pop()
+    return "Estas en la Cola eliminar"
 
 # Metodos para la Pila
 
@@ -58,9 +62,10 @@ def pushP():
     """Metodo para agregar a la cola."""
     param = str(request.form['dato'])
     cola.push(param)
+    return "Estas en la Cola Agregar"
 
 
-@app.route('/pila/eliminar', methods=['GET'])
+@app.route('/pila/eliminar', methods=['POST'])
 def popP():
     """Metodo para eliminar de la cola."""
     cola.pop()

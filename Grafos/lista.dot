@@ -1,0 +1,4 @@
+digraph { label = "Lista" 
+ 
+	Luis->Alfredo
+}

@@ -22,7 +22,7 @@ public class Conexion {
     public static OkHttpClient webClient = new OkHttpClient();
     
     
-    public static String getString(String metodo, RequestBody formBody) throws IOException{
+    public String getString(String metodo, RequestBody formBody) throws IOException{
         
         try {
             URL url = new URL("http://localhost:5000/"+metodo);

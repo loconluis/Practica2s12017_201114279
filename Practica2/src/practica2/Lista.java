@@ -7,6 +7,9 @@ package practica2;
 
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.RequestBody;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -101,7 +104,16 @@ public class Lista extends javax.swing.JFrame {
         RequestBody formBody = new FormEncodingBuilder()
                 .add("dato", data)
                 .build();
+        try {
+            String r = cn.getString("lista/agregar", formBody);
+            System.out.println("dato agregado: "+r);
+        } catch (IOException ex) {
+            Logger.getLogger(Lista.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+        
+        
+        txt_palabra.setText("");
     }//GEN-LAST:event_bt_agregarActionPerformed
 
     /**
