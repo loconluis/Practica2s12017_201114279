@@ -64,8 +64,8 @@ class Cola():
             temp = NodoC()
             temp = self.cabeza
             self.cabeza = temp.getSig()
-            temp.setSig(None)
             return temp.getDato()
+            temp = None
         else:
             return "Lista vacia"
 

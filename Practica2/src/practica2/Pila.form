@@ -63,11 +63,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="push"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt__pushActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bt__pop">
       <Properties>
         <Property name="text" type="java.lang.String" value="pop"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt__popActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

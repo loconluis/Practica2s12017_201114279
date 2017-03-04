@@ -33,26 +33,31 @@ def add():
 @app.route('/lista/buscar', methods=['POST'])
 def serch():
     """Metodo de buscar por POST."""
-    param = str(request.form['dato'])
-#    lista.buscar(param)
-    return lista.buscar(param)
+    parametro = str(request.form['dato'])
+    flag = lista.buscar(parametro)
+    print flag
+    return flag
 
 
 # Metodos para la Cola
 
 
-# def pushC():
-    # @app.route('/cola/agregar', methods=['POST'])
-    # """Metodo para agregar a la cola."""
-    # param = str(request.form['dato'])
-    # cola.push(param)
+@app.route('/cola/agregar', methods=['POST'])
+def pushC():
+    """Metodo para agregar a la cola."""
+    param = str(request.form['dato'])
+    cola.push(param)
+    cola.graficar()
+    return param
 
 
 @app.route('/cola/eliminar', methods=['POST'])
 def popC():
     """Metodo para eliminar de la cola."""
-    cola.pop()
-    return "Estas en la Cola eliminar"
+    p = str(cola.pop())
+    print "Elemento eliminado: " + p
+#    cola.graficar()
+    return p
 
 # Metodos para la Pila
 
@@ -61,14 +66,16 @@ def popC():
 def pushP():
     """Metodo para agregar a la cola."""
     param = str(request.form['dato'])
-    cola.push(param)
-    return "Estas en la Cola Agregar"
+    pila.push(param)
+    return param
 
 
 @app.route('/pila/eliminar', methods=['POST'])
 def popP():
     """Metodo para eliminar de la cola."""
     cola.pop()
+    return pila.pop()
+
 # Metodos para la Matriz
 
 

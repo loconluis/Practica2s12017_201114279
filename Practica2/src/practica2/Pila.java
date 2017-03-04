@@ -5,6 +5,12 @@
  */
 package practica2;
 
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.RequestBody;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author luislocon
@@ -14,6 +20,7 @@ public class Pila extends javax.swing.JFrame {
     /**
      * Creates new form Pila
      */
+        Conexion cn = new Conexion();
     public Pila() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -36,8 +43,18 @@ public class Pila extends javax.swing.JFrame {
         setTitle("Pila");
 
         bt__push.setText("push");
+        bt__push.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt__pushActionPerformed(evt);
+            }
+        });
 
         bt__pop.setText("pop");
+        bt__pop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt__popActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,6 +86,32 @@ public class Pila extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt__pushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt__pushActionPerformed
+        String agregado = txt_data.getText();
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("dato", agregado)
+                .build();
+        try {
+            String r = cn.getString("pila/agregar", formBody);
+            System.out.println("dato agregado: "+r);
+        } catch (IOException ex) {
+            Logger.getLogger(Lista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txt_data.setText("");
+    }//GEN-LAST:event_bt__pushActionPerformed
+
+    private void bt__popActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt__popActionPerformed
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("dato", "")
+                .build();
+        try {
+            String r = cn.getString("pila/eliminar", formBody);
+            System.out.println("dato eliminado: "+r);
+        } catch (IOException ex) {
+            Logger.getLogger(Lista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bt__popActionPerformed
 
     /**
      * @param args the command line arguments

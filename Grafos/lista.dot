@@ -1,4 +1,6 @@
 digraph { label = "Lista" 
  
-	Luis->Alfredo
+	q->w
+	w->e
+	e->r
 }

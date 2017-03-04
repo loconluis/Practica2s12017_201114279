@@ -5,6 +5,12 @@
  */
 package practica2;
 
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.RequestBody;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author luislocon
@@ -14,6 +20,8 @@ public class Cola extends javax.swing.JFrame {
     /**
      * Creates new form Cola
      */
+    Conexion cn = new Conexion(); 
+    
     public Cola() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -36,8 +44,18 @@ public class Cola extends javax.swing.JFrame {
         setTitle("Cola");
 
         bt__queue.setText("queue");
+        bt__queue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt__queueActionPerformed(evt);
+            }
+        });
 
         bt__desqueue.setText("desqueue");
+        bt__desqueue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt__desqueueActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,6 +87,33 @@ public class Cola extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt__queueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt__queueActionPerformed
+        String agregado = txt_data.getText();
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("dato", agregado)
+                .build();
+        try {
+            String r = cn.getString("cola/agregar", formBody);
+            System.out.println("dato agregado: "+r);
+        } catch (IOException ex) {
+            Logger.getLogger(Lista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txt_data.setText("");
+    }//GEN-LAST:event_bt__queueActionPerformed
+
+    private void bt__desqueueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt__desqueueActionPerformed
+
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("dato", "")
+                .build();
+        try {
+            String r = cn.getString("cola/eliminar", formBody);
+            System.out.println("dato eliminado: "+r);
+        } catch (IOException ex) {
+            Logger.getLogger(Lista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bt__desqueueActionPerformed
 
     /**
      * @param args the command line arguments

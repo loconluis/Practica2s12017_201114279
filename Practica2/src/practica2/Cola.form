@@ -63,11 +63,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="queue"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt__queueActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bt__desqueue">
       <Properties>
         <Property name="text" type="java.lang.String" value="desqueue"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt__desqueueActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

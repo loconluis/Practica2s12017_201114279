@@ -53,6 +53,11 @@ public class Lista extends javax.swing.JFrame {
         bt_borrar.setText("Borrar");
 
         bt_buscar.setText("Buscar");
+        bt_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_buscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,6 +120,19 @@ public class Lista extends javax.swing.JFrame {
         
         txt_palabra.setText("");
     }//GEN-LAST:event_bt_agregarActionPerformed
+
+    private void bt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_buscarActionPerformed
+        String buscado = txt_buscar.getText();
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("dato", buscado)
+                .build();
+        try {
+            String r = cn.getString("lista/buscar", formBody);
+            System.out.println(r);
+        } catch (IOException ex) {
+            Logger.getLogger(Lista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bt_buscarActionPerformed
 
     /**
      * @param args the command line arguments

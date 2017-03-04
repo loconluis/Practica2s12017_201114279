@@ -65,13 +65,13 @@ class Lista():
         temp = self.indice
         i = 1
         while temp is not None:
-            if temp.getDato() is dato:
-                # print "Palabra: "+temp.getDato()+" en la posicion: "+str(i)
-                return temp.getDato()
-                break
+            if temp.getDato() == dato:
+#                 print "Palabra: "+temp.getDato()+" en la posicion: "+str(i)
+                return "El dato: <" + str(temp.getDato()) + "> encontrado en la posicion: " + str(i)
             else:
                 temp = temp.getSig()
             i = i + 1
+        return "Dato no encontrado"
 
     def longitud(self):
         """Retorna size."""
