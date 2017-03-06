@@ -1,7 +1,3 @@
 digraph { label = "Cola" 
  
-	a->s
-	s->d
-	d->f
-	f->g
 }

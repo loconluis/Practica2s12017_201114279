@@ -56,7 +56,7 @@ def popC():
     """Metodo para eliminar de la cola."""
     p = str(cola.pop())
     print "Elemento eliminado: " + p
-#    cola.graficar()
+    cola.graficar()
     return p
 
 # Metodos para la Pila
@@ -67,14 +67,17 @@ def pushP():
     """Metodo para agregar a la cola."""
     param = str(request.form['dato'])
     pila.push(param)
+    pila.graficar()
     return param
 
 
 @app.route('/pila/eliminar', methods=['POST'])
 def popP():
     """Metodo para eliminar de la cola."""
-    cola.pop()
-    return pila.pop()
+    p = str(pila.pop())
+    print "Elemento eliminado: " + p
+    pila.graficar()
+    return p
 
 # Metodos para la Matriz
 

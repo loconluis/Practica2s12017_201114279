@@ -1,6 +1,8 @@
 digraph { label = "Lista" 
  
-	q->w
-	w->e
-	e->r
+	A->B
+	B->C
+	C->D
+	D->E
+	E->F
 }

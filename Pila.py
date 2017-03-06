@@ -50,6 +50,7 @@ class Pila():
             if self.estaVacia() is True:
                 self.cabeza = nuevo
                 self.cola = self.cabeza
+                self.size = self.size + 1
             else:
                 temp = NodoP()
                 temp = self.cabeza
@@ -57,6 +58,7 @@ class Pila():
                     temp = temp.getSig()
                 temp.setSig(nuevo)
                 self.cola = nuevo
+                self.size = self.size + 1
 
         def pop(self):
             """Elimina al ultimo de la pila."""
@@ -65,11 +67,22 @@ class Pila():
                 temp2 = NodoP()
                 temp1 = self.cola
                 temp2 = self.cabeza
-                while temp2.getSig() is not temp1:
-                    temp2 = temp2.getSig()
-                temp2.setSig(None)
-                self.cola = temp2
-                return temp1.getDato()
+                if temp2 == temp1:
+                    print "Estoy aqui"
+                    temp2 = None
+                    self.cola = temp2
+                    return temp1.getDato()
+                    temp1 = None
+                    self.size = self.size - 1
+                else:
+                    print "estoy aqui :3"
+                    while temp2.getSig() is not temp1:
+                        temp2 = temp2.getSig()
+                    temp2.setSig(None)
+                    self.cola = temp2
+                    return temp1.getDato()
+                    temp1 = None
+                    self.size = self.size - 1
             else:
                 return "Lista Vacia"
 
@@ -84,6 +97,11 @@ class Pila():
             else:
                 print "No te salio"
 
+        def longitud(self):
+            """Metodo devuelve la longitud."""
+            value = self.size
+            return value
+
         def graficar(self):
             """Metodo para graficar la Pila."""
             path = '/home/luislocon/Documentos/Cursos/EDD/Practica2EDD/Grafos/pila.dot'
@@ -91,10 +109,15 @@ class Pila():
             cadenaGrafo = "digraph { label = \"Pila\" \n \n"
             actual = NodoP()
             actual = self.cabeza
-            while actual.getSig() is not None:
-                cadenaGrafo += "\t"+str(actual.getDato())+"->"+str(actual.getSig().getDato())+"\n"
-                actual = actual.getSig()
-            cadenaGrafo += "}"
+            if self.longitud() == 0:
+                cadenaGrafo += "}"
+            elif self.longitud() == 1:
+                cadenaGrafo += str(actual.getDato()) + "}"
+            else:
+                while actual.getSig() is not None:
+                    cadenaGrafo += "\t"+str(actual.getDato())+"->"+str(actual.getSig().getDato())+"\n"
+                    actual = actual.getSig()
+                cadenaGrafo += "}"
             fo.write(cadenaGrafo)
             fo.close()
             subprocess.call(["dot", "-Tpng", "-O", path])

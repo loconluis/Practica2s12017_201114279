@@ -1,5 +1,3 @@
 digraph { label = "Pila" 
  
-	10->20
-	20->30
 }

@@ -69,6 +69,11 @@ class Cola():
         else:
             return "Lista vacia"
 
+    def longitud(self):
+        """Metodo devuelve la longitud de la Cola."""
+        value = self.size
+        return value
+
     def verCola(self):
         """Imprime la cola."""
         if self.estaVacia() is False:
@@ -87,10 +92,15 @@ class Cola():
         cadenaGrafo = "digraph { label = \"Cola\" \n \n"
         actual = NodoC()
         actual = self.cabeza
-        while actual.getSig() is not None:
-            cadenaGrafo += "\t"+str(actual.getDato())+"->"+str(actual.getSig().getDato())+"\n"
-            actual = actual.getSig()
-        cadenaGrafo += "}"
+        if self.longitud() == 0:
+            cadenaGrafo += "}"
+        elif self.longitud() == 1:
+            cadenaGrafo += str(actual.getDato()) + "}"
+        else:
+            while actual.getSig() is not None:
+                cadenaGrafo += "\t"+str(actual.getDato())+"->"+str(actual.getSig().getDato())+"\n"
+                actual = actual.getSig()
+            cadenaGrafo += "}"
         fo.write(cadenaGrafo)
         fo.close()
         subprocess.call(["dot", "-Tpng", "-O", path])
