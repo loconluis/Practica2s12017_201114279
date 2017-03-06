@@ -51,6 +51,11 @@ public class Lista extends javax.swing.JFrame {
         });
 
         bt_borrar.setText("Borrar");
+        bt_borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_borrarActionPerformed(evt);
+            }
+        });
 
         bt_buscar.setText("Buscar");
         bt_buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -128,11 +133,29 @@ public class Lista extends javax.swing.JFrame {
                 .build();
         try {
             String r = cn.getString("lista/buscar", formBody);
-            System.out.println(r);
+            if(r == "Dato no encontrado"){
+                System.out.println("Dato no encontrado");
+            }
+            else{
+                System.out.println("El dato <"+buscado+"> se encuentra en la posicion: "+r);
+            }
         } catch (IOException ex) {
             Logger.getLogger(Lista.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bt_buscarActionPerformed
+
+    private void bt_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_borrarActionPerformed
+        String i = txt_indice.getText();
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("dato", i)
+                .build();
+        try {
+            String r = cn.getString("lista/eliminar", formBody);
+            System.out.println("dato eliminado: "+r);
+        } catch (IOException ex) {
+            Logger.getLogger(Lista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bt_borrarActionPerformed
 
     /**
      * @param args the command line arguments

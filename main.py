@@ -30,6 +30,15 @@ def add():
     return parametro
 
 
+@app.route('/lista/eliminar', methods=['POST'])
+def delete():
+    """Metodo para eliminar por POST."""
+    parametro = str(request.form['dato'])
+    lista.eliminar(parametro)
+    lista.graficar()
+    return parametro
+
+
 @app.route('/lista/buscar', methods=['POST'])
 def serch():
     """Metodo de buscar por POST."""

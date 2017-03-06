@@ -1,8 +1,5 @@
 digraph { label = "Lista" 
  
-	A->B
-	B->C
-	C->D
-	D->E
-	E->F
+	LUIS->ALFREDO
+	ALFREDO->PARCERO
 }

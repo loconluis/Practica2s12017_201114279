@@ -8,6 +8,7 @@ class Nodo():
     def __init__(self):
         """Constructor."""
         self.dato = None
+        self.pos = None
         self.sig = None
 
     def getDato(self):
@@ -17,6 +18,14 @@ class Nodo():
     def setDato(self, dat):
         """Setea el valor."""
         self.dato = dat
+
+    def getPos(self):
+        """Devuelve la posicion."""
+        return self.pos
+
+    def setPos(self, posicion):
+        """Setea la posicion."""
+        self.pos = posicion
 
     def getSig(self):
         """Retorna el siguiente."""
@@ -51,6 +60,7 @@ class Lista():
         if self.estaVacia() is True:
             self.indice = nuevo
             self.size = self.size + 1
+            nuevo.setPos(self.size)
         else:
             temp = Nodo()
             temp = self.indice
@@ -58,6 +68,7 @@ class Lista():
                 temp = temp.getSig()
             temp.setSig(nuevo)
             self.size = self.size + 1
+            nuevo.setPos(self.size)
 
     def buscar(self, dato):
         """Metodo Buscar."""
@@ -66,12 +77,35 @@ class Lista():
         i = 1
         while temp is not None:
             if temp.getDato() == dato:
-#                 print "Palabra: "+temp.getDato()+" en la posicion: "+str(i)
-                return "El dato: <" + str(temp.getDato()) + "> encontrado en la posicion: " + str(i)
+# print "Palabra: "+temp.getDato()+" en la posicion: "+str(i)
+# return "El dato: <" + str(temp.getDato()) + "> encontrado en la posicion: " + str(i)
+                return str(i)
             else:
                 temp = temp.getSig()
             i = i + 1
         return "Dato no encontrado"
+
+    def eliminar(self, i):
+        """Metodo para eliminar por indice."""
+        temp1 = Nodo()
+        temp2 = Nodo()
+        temp3 = Nodo()
+        temp1 = self.indice
+        temp2 = temp1.getSig()
+        temp3 = temp2.getSig()
+        if temp1.getPos() == i:
+            self.indice = temp1.getSig()
+        elif i < (self.longitud()):
+            while self.buscar(temp2.getDato()) == i:
+                temp1 = temp1.getSig()
+                temp2 = temp1.getSig()
+                temp3 = temp2.getSig()
+            temp1.setSig(temp3)
+            temp2 = None
+        elif i == self.longitud():
+            while temp2.getSig() is not None:
+                temp2 = temp2.getSig()
+            temp2 = None
 
     def longitud(self):
         """Retorna size."""
@@ -97,10 +131,15 @@ class Lista():
         actual = Nodo()
         actual = self.indice
     #    i = 0
-        while actual.getSig() is not None:
-            cadenaGrafo += "\t"+str(actual.getDato())+"->"+str(actual.getSig().getDato()+"\n")
-            actual = actual.getSig()
-        cadenaGrafo += "}"
+        if self.longitud() == 0:
+            cadenaGrafo += "}"
+        elif self.longitud() == 1:
+            cadenaGrafo += str(actual.getDato()) + "}"
+        else:
+            while actual.getSig() is not None:
+                cadenaGrafo += "\t"+str(actual.getDato())+"->"+str(actual.getSig().getDato()+"\n")
+                actual = actual.getSig()
+            cadenaGrafo += "}"
         fo.write(cadenaGrafo)
         fo.close()
         subprocess.call(["dot", "-Tpng", "-O", path])
